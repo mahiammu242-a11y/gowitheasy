@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rapido-Style Garage Dashboard – Complete Preview</title>
+  <title>Rapido-Style Garage+ Dashboard – Static Preview</title>
   <style>
     :root{
       --bg1:#E7E7E7;
@@ -21,7 +21,6 @@
       --shadow:0 18px 40px rgba(15,23,42,.12);
       --shadow2:0 10px 24px rgba(15,23,42,.10);
       --r:28px;
-      --r2:22px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -32,20 +31,14 @@
       background: radial-gradient(1200px 520px at 50% 8%, #D6D6D6 0%, var(--bg1) 48%, var(--bg2) 100%);
       overflow-x:hidden;
     }
-
-    /* App shell */
     .app{max-width:1200px;margin:0 auto;padding:18px}
     .shell{display:grid;grid-template-columns:92px 1fr;gap:16px;align-items:start}
 
     /* Header */
     .header{
       grid-column:1 / -1;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 14px;
-      border-radius:var(--r);
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:12px 14px;border-radius:var(--r);
       background:rgba(255,255,255,.70);
       border:1px solid var(--line);
       box-shadow:var(--shadow2);
@@ -61,7 +54,6 @@
     .brandTxt{display:flex;flex-direction:column;gap:2px}
     .brandTxt b{font-weight:1000}
     .brandTxt span{font-size:12px;color:var(--muted);font-weight:800}
-
     .hdrActions{display:flex;align-items:center;gap:10px}
     .iconBtn{
       width:44px;height:44px;border-radius:18px;
@@ -93,16 +85,11 @@
       box-shadow:var(--shadow2);
       backdrop-filter: blur(10px);
       padding:10px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      align-items:center;
+      display:flex;flex-direction:column;gap:10px;align-items:center;
     }
     .sbBtn{
-      width:100%;height:48px;
-      border-radius:18px;
-      background:#fff;
-      border:1px solid var(--line);
+      width:100%;height:48px;border-radius:18px;
+      background:#fff;border:1px solid var(--line);
       box-shadow:0 8px 16px rgba(15,23,42,.07);
       display:grid;place-items:center;
       cursor:pointer;user-select:none;
@@ -123,8 +110,7 @@
     /* Segmented tabs */
     .seg{
       display:flex;gap:8px;align-items:center;
-      padding:8px;
-      border-radius:999px;
+      padding:8px;border-radius:999px;
       background:rgba(255,255,255,.70);
       border:1px solid var(--line);
       box-shadow:var(--shadow2);
@@ -133,13 +119,9 @@
     }
     .seg button{
       border:0;background:transparent;
-      padding:10px 14px;
-      border-radius:999px;
-      font-weight:1000;
-      font-size:13px;
-      color:#334155;
-      cursor:pointer;
-      user-select:none;
+      padding:10px 14px;border-radius:999px;
+      font-weight:1000;font-size:13px;
+      color:#334155;cursor:pointer;user-select:none;
     }
     .seg button.active{
       background:linear-gradient(180deg, var(--teal) 0%, var(--teal2) 100%);
@@ -147,55 +129,36 @@
       box-shadow:0 14px 22px rgba(15,107,104,.20);
     }
 
-    /* Dashboard grid like your reference */
+    /* Layout */
     .board{display:grid;grid-template-columns: 1.45fr 1fr;gap:16px;align-items:start}
     .lower{display:grid;grid-template-columns: repeat(3, minmax(0, 1fr));gap:16px;margin-top:16px}
 
-    /* Garage main card */
+    /* Main Garage */
     .garageWrap{padding:14px}
-    .garageTop{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-      padding:6px 2px 10px;
-    }
+    .garageTop{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:6px 2px 10px}
     .garageTitle h1{
       margin:0;
-      font-size:34px;
-      font-weight:1000;
+      font-size:34px;font-weight:1000;
       font-family: ui-serif, Georgia, "Times New Roman", serif;
     }
-    .loc{
-      display:flex;align-items:center;gap:8px;
-      margin-top:6px;
-      font-size:13px;
-      color:var(--muted);
-      font-weight:900;
-    }
+    .loc{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:13px;color:var(--muted);font-weight:900}
     .dot{width:10px;height:10px;border-radius:999px;background:var(--success);box-shadow:0 0 0 6px rgba(34,197,94,.16)}
-
     .heroArt{
       width:360px;max-width:100%;
-      height:170px;
-      border-radius:26px;
+      height:170px;border-radius:26px;
       background:
         radial-gradient(220px 120px at 66% 60%, rgba(15,107,104,.18) 0%, rgba(15,107,104,0) 70%),
         linear-gradient(180deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.36) 100%);
       border:1px solid var(--line);
       box-shadow:var(--shadow2);
-      display:grid;
-      place-items:center;
-      position:relative;
-      overflow:hidden;
+      display:grid;place-items:center;
+      position:relative;overflow:hidden;
     }
     .heroArt .bike{font-size:66px;opacity:.95}
 
-    .quickRow{
-      display:flex;gap:12px;flex-wrap:wrap;
-      padding:10px 0 4px;
-    }
+    .quickRow{display:flex;gap:12px;flex-wrap:wrap;padding:10px 0 4px}
     .qBtn{
-      width:110px;
-      padding:12px 10px;
-      border-radius:24px;
+      width:110px;padding:12px 10px;border-radius:24px;
       background:rgba(255,255,255,.86);
       border:1px solid var(--line);
       box-shadow:var(--shadow2);
@@ -214,7 +177,7 @@
     .qLbl{font-size:11px;font-weight:1000;color:#334155;text-align:center;line-height:1.1}
 
     .kpis{
-      margin-top:8px;
+      margin-top:14px;
       background:rgba(255,255,255,.70);
       border:1px solid var(--line);
       border-radius:26px;
@@ -279,21 +242,18 @@
     }
     .chev svg{width:16px;height:16px}
 
-    /* Bottom nav inside the big garage card (like your reference) */
+    /* Dock inside big card */
     .dockWrap{display:flex;justify-content:center;margin-top:12px}
     .dock{
       width:min(520px, 100%);
       display:flex;gap:10px;justify-content:space-between;
-      padding:10px;
-      border-radius:22px;
+      padding:10px;border-radius:22px;
       background:rgba(255,255,255,.82);
       border:1px solid var(--line);
       box-shadow:var(--shadow2);
     }
     .dock .dBtn{
-      flex:1;
-      border-radius:18px;
-      padding:10px 8px;
+      flex:1;border-radius:18px;padding:10px 8px;
       display:flex;flex-direction:column;align-items:center;gap:6px;
       font-size:10px;font-weight:1000;
       cursor:pointer;user-select:none;
@@ -301,7 +261,7 @@
     .dock svg{width:18px;height:18px}
     .dock .dBtn.active{background:rgba(15,107,104,.12)}
 
-    /* Smaller cards in lower row */
+    /* Mini cards */
     .mini{padding:14px}
     .miniTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
     .miniTitle{display:flex;flex-direction:column;gap:3px}
@@ -310,8 +270,7 @@
 
     .footerActions{display:flex;gap:10px;justify-content:space-between;margin-top:12px}
     .fab{
-      flex:1;
-      border-radius:18px;
+      flex:1;border-radius:18px;
       background:rgba(255,255,255,.86);
       border:1px solid var(--line);
       box-shadow:var(--shadow2);
@@ -349,7 +308,7 @@
     .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:rgba(15,23,42,.92);color:#fff;padding:10px 12px;border-radius:999px;font-weight:1000;font-size:12px;box-shadow:0 18px 40px rgba(0,0,0,.22);opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;z-index:9999}
     .toast.show{opacity:1; transform:translateX(-50%) translateY(-6px)}
 
-    /* Responsive: on small screens stack like pages */
+    /* Responsive */
     @media (max-width: 980px){
       .shell{grid-template-columns:1fr}
       .sidebar{display:none}
@@ -358,29 +317,31 @@
       .heroArt{width:100%;height:160px}
       .twoCols{grid-template-columns:1fr}
     }
-
-    @media (prefers-reduced-motion: reduce){
-      *{transition:none !important}
-    }
   </style>
 </head>
+
 <body>
   <div class="app">
     <header class="header">
       <div class="brandRow">
         <div class="logo">↯</div>
         <div class="brandTxt">
-          <b>MASTER UI – Garage+ Dashboard</b>
-          <span>Rapido-like minimal UX preview</span>
+          <b>Garage+ Dashboard</b>
+          <span>Rapido-like minimal UX – static preview</span>
         </div>
       </div>
 
       <div class="hdrActions">
-        <button class="iconBtn" id="hdrCopy" title="Copy (demo)" aria-label="Copy">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 9h10v10H9z"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <button class="iconBtn" id="hdrCopy" aria-label="Copy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 9h10v10H9z"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
         </button>
-        <button class="iconBtn" id="hdrBell" title="Notifications" aria-label="Notifications">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <button class="iconBtn" id="hdrBell" aria-label="Notifications">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
         </button>
         <div class="avatar" title="Profile">MG</div>
       </div>
@@ -389,45 +350,55 @@
     <div class="shell">
       <aside class="sidebar" aria-label="Navigation">
         <div class="sbBtn active" data-nav="dash" title="Dashboard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h8v8H3z"/><path d="M13 3h8v5h-8z"/><path d="M13 10h8v11h-8z"/><path d="M3 13h8v8H3z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3h8v8H3z"/><path d="M13 3h8v5h-8z"/><path d="M13 10h8v11h-8z"/><path d="M3 13h8v8H3z"/>
+          </svg>
         </div>
         <div class="sbBtn" data-nav="vehicles" title="Vehicles">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h2l1-5h12l1 5h2"/><path d="M6 12l1-4h10l1 4"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 17h2l1-5h12l1 5h2"/><path d="M6 12l1-4h10l1 4"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
+          </svg>
         </div>
         <div class="sbBtn" data-nav="alerts" title="Alerts">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
         </div>
         <div class="sbSep"></div>
         <div class="sbBtn" data-nav="settings" title="Settings">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 0 1-1.41 3.41h-.19a1.7 1.7 0 0 0-1.6 1.12 1.7 1.7 0 0 0 .38 1.86 2 2 0 0 1-2.83 2.83 1.7 1.7 0 0 0-1.86-.38 1.7 1.7 0 0 0-1.12 1.6v.19A2 2 0 0 1 8.74 23h-.08a2 2 0 0 1-1.99-1.66 1.7 1.7 0 0 0-1.12-1.6 1.7 1.7 0 0 0-1.86.38A2 2 0 0 1 .84 17.29l.06-.06A1.7 1.7 0 0 0 1.24 15a1.7 1.7 0 0 0-1.6-1.12H-.55A2 2 0 0 1-1.96 10.47l.06-.06A1.7 1.7 0 0 0-1.56 8.54 2 2 0 0 1 1.27 5.71a1.7 1.7 0 0 0 1.86.38 1.7 1.7 0 0 0 1.12-1.6V4.3A2 2 0 0 1 6.24 2.3h.19a1.7 1.7 0 0 0 1.6-1.12 2 2 0 0 1 3.41 1.41v.19a1.7 1.7 0 0 0 1.12 1.6 1.7 1.7 0 0 0 1.86-.38A2 2 0 0 1 19.4 9a1.7 1.7 0 0 0-.34 1.87"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7z"/>
+            <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 0 1-1.41 3.41h-.19a1.7 1.7 0 0 0-1.6 1.12 1.7 1.7 0 0 0 .38 1.86 2 2 0 0 1-2.83 2.83 1.7 1.7 0 0 0-1.86-.38 1.7 1.7 0 0 0-1.12 1.6v.19A2 2 0 0 1 8.74 23h-.08a2 2 0 0 1-1.99-1.66 1.7 1.7 0 0 0-1.12-1.6 1.7 1.7 0 0 0-1.86.38A2 2 0 0 1 .84 17.29l.06-.06A1.7 1.7 0 0 0 1.24 15a1.7 1.7 0 0 0-1.6-1.12H-.55A2 2 0 0 1-1.96 10.47l.06-.06A1.7 1.7 0 0 0-1.56 8.54 2 2 0 0 1 1.27 5.71a1.7 1.7 0 0 0 1.86.38 1.7 1.7 0 0 0 1.12-1.6V4.3A2 2 0 0 1 6.24 2.3h.19a1.7 1.7 0 0 0 1.6-1.12 2 2 0 0 1 3.41 1.41v.19a1.7 1.7 0 0 0 1.12 1.6 1.7 1.7 0 0 0 1.86-.38A2 2 0 0 1 19.4 9a1.7 1.7 0 0 0-.34 1.87"/>
+          </svg>
         </div>
       </aside>
 
       <main>
-        <!-- TOP: Garage dashboard + Admin panel -->
         <div class="board">
 
-          <!-- GARAGE DASHBOARD (matches main big card in your image) -->
-          <section class="card garageWrap" aria-label="Garage dashboard">
+          <!-- MAIN GARAGE DASHBOARD -->
+          <section class="card garageWrap" id="garageRoot" aria-label="Garage dashboard">
             <div class="garageTop">
               <div class="seg" aria-label="Garage tabs">
-                <button class="active" data-tab="gOverview">Overview</button>
-                <button data-tab="gVehicles">Vehicles</button>
-                <button data-tab="gAlerts">Alerts</button>
+                <button class="active" data-tab="g_overview">Overview</button>
+                <button data-tab="g_vehicles">Vehicles</button>
+                <button data-tab="g_alerts">Alerts</button>
               </div>
 
-              <div class="seg" aria-label="Top mini tabs" style="opacity:.9">
-                <button class="active" data-mini="garage">Garage</button>
-                <button data-mini="reports">Reports</button>
-                <button data-mini="alerts">Alerts</button>
+              <div class="seg" style="opacity:.9" aria-label="Top mini tabs">
+                <button class="active" type="button">Garage</button>
+                <button type="button">Reports</button>
+                <button type="button">Alerts</button>
               </div>
             </div>
 
-            <div class="tab show" id="gOverview">
+            <div class="tab show" id="g_overview">
               <div style="display:flex;gap:16px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
                 <div class="garageTitle">
                   <h1>RapidFix Garage</h1>
                   <div class="loc"><span class="dot"></span> Mumbai</div>
+
                   <div class="quickRow">
                     <div class="qBtn" data-action="newVehicle"><div class="qIcon">+</div><div class="qLbl">Add Vehicle</div></div>
                     <div class="qBtn" data-action="upload"><div class="qIcon">📷</div><div class="qLbl">Upload Inspection</div></div>
@@ -441,7 +412,7 @@
                 </div>
               </div>
 
-              <div class="kpis" style="margin-top:14px">
+              <div class="kpis">
                 <div class="kpi">
                   <div class="kpiNum" id="kpiTotal">18</div>
                   <div class="kpiLbl">Total Vehicles Today</div>
@@ -497,64 +468,72 @@
               </div>
             </div>
 
-            <div class="tab" id="gVehicles">
+            <div class="tab" id="g_vehicles">
               <div class="panelHead" style="margin:8px 2px 12px"><b>All Vehicles</b><span>Tap card to update</span></div>
               <div class="list" id="garageVehiclesAll"></div>
             </div>
 
-            <div class="tab" id="gAlerts">
+            <div class="tab" id="g_alerts">
               <div class="panelHead" style="margin:8px 2px 12px"><b>Garage Alerts</b><span>Updated today</span></div>
               <div class="list" id="garageAlerts"></div>
             </div>
           </section>
 
-          <!-- ADMIN PANEL (matches right panel in your image) -->
-          <section class="card mini" aria-label="Admin panel">
+          <!-- ADMIN PANEL (unique IDs, no conflicts) -->
+          <section class="card mini" id="adminRoot" aria-label="Admin panel">
             <div class="miniTop">
               <div class="miniTitle">
                 <b>Admin</b>
                 <span>Monitor garages</span>
               </div>
               <div class="seg" aria-label="Admin tabs">
-                <button class="active" data-tab="aGarages">Garages</button>
-                <button data-tab="aReports">Reports</button>
-                <button data-tab="aAlerts">Alerts</button>
+                <button class="active" data-tab="admin_garages">Garages</button>
+                <button data-tab="admin_reports">Reports</button>
+                <button data-tab="admin_alerts">Alerts</button>
               </div>
             </div>
 
-            <div class="tab show" id="aGarages">
+            <div class="tab show" id="admin_garages">
               <div class="list" id="adminGarageList"></div>
             </div>
 
-            <div class="tab" id="aReports">
+            <div class="tab" id="admin_reports">
               <div class="list">
                 <div class="item">
                   <div class="left">
                     <div class="iconBox">⭐</div>
                     <div class="meta"><div class="t">Quality Score</div><div class="u">Updated today</div></div>
                   </div>
-                  <div class="right"><span class="pill p-success">Good</span><div class="chev" data-open="report"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
+                  <div class="right">
+                    <span class="pill p-success">Good</span>
+                    <div class="chev" data-open="report" title="Open">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                    </div>
+                  </div>
                 </div>
                 <div class="item">
                   <div class="left">
                     <div class="iconBox">₹</div>
                     <div class="meta"><div class="t">Revenue Trend</div><div class="u">This month</div></div>
                   </div>
-                  <div class="right"><span class="pill p-info">View</span><div class="chev" data-open="report"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
+                  <div class="right">
+                    <span class="pill p-info">View</span>
+                    <div class="chev" data-open="report" title="Open">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div class="tab" id="aAlerts">
+            <div class="tab" id="admin_alerts">
               <div class="list" id="adminAlerts"></div>
             </div>
           </section>
         </div>
 
-        <!-- LOWER: three preview pages like your image (Employee cards) -->
+        <!-- LOWER ROW: 3 preview pages -->
         <div class="lower" aria-label="Lower dashboards">
-
-          <!-- Employee: My Tasks (left mini screen in your image) -->
           <section class="card mini" aria-label="Employee tasks">
             <div class="miniTop">
               <div class="miniTitle">
@@ -571,7 +550,6 @@
             </div>
           </section>
 
-          <!-- Employee: Alerts list (center mini screen in your image) -->
           <section class="card mini" aria-label="Employee alerts">
             <div class="miniTop">
               <div class="miniTitle">
@@ -579,9 +557,9 @@
                 <span>Alerts • Vehicles • Garages</span>
               </div>
               <div class="seg" aria-label="Mini tabs">
-                <button class="active" data-mini="garages">Garages</button>
-                <button data-mini="vehicles">Vehicles</button>
-                <button data-mini="alerts">Alerts</button>
+                <button class="active" type="button">Garages</button>
+                <button type="button">Vehicles</button>
+                <button type="button">Alerts</button>
               </div>
             </div>
             <div class="list" id="employeeAlerts"></div>
@@ -592,7 +570,6 @@
             </div>
           </section>
 
-          <!-- Admin: Garages list (right mini screen in your image) -->
           <section class="card mini" aria-label="Admin garages list">
             <div class="miniTop">
               <div class="miniTitle">
@@ -600,9 +577,9 @@
                 <span>Garages</span>
               </div>
               <div class="seg" aria-label="Admin mini tabs">
-                <button class="active" data-mini="garages">Garages</button>
-                <button data-mini="reports">Reports</button>
-                <button data-mini="alerts">Alerts</button>
+                <button class="active" type="button">Garages</button>
+                <button type="button">Reports</button>
+                <button type="button">Alerts</button>
               </div>
             </div>
             <div class="list" id="adminGarageListMini"></div>
@@ -612,19 +589,20 @@
               <div class="fab" data-action="settings"><div class="c">⚙️</div>Settings</div>
             </div>
           </section>
-
         </div>
       </main>
     </div>
   </div>
 
-  <!-- Modal: Add / Update Vehicle -->
+  <!-- Modal -->
   <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Vehicle modal">
     <div class="modal">
       <div class="mHead">
         <strong id="modalTitle">+ New Vehicle</strong>
         <button class="iconBtn" id="closeModal" aria-label="Close">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18"/><path d="M6 6l12 12"/>
+          </svg>
         </button>
       </div>
       <div class="mBody">
@@ -635,19 +613,13 @@
         <div class="field">
           <label>Type</label>
           <select id="fType">
-            <option>Bike</option>
-            <option>Car</option>
-            <option>Scooter</option>
-            <option>Auto</option>
+            <option>Bike</option><option>Car</option><option>Scooter</option><option>Auto</option>
           </select>
         </div>
         <div class="field">
           <label>Status</label>
           <select id="fStatus">
-            <option>Inspection</option>
-            <option>Repair</option>
-            <option>Ready</option>
-            <option>Delivered</option>
+            <option>Inspection</option><option>Repair</option><option>Ready</option><option>Delivered</option>
           </select>
         </div>
         <div class="field">
@@ -673,7 +645,19 @@
   <div class="toast" id="toast">Done</div>
 
   <script>
-    // ------------------------ Demo Data ------------------------
+    // Safe selectors
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+
+    // Toast
+    const toast = $('#toast');
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1200);
+    }
+
+    // Demo data
     const state = {
       vehicles: [
         { id:'v1', plate:'TN24XY6722', type:'Car', status:'Inspection', updated:'10 mins ago', assignee:'Meena (Inspector)', notes:'' },
@@ -682,13 +666,13 @@
         { id:'v4', plate:'TN73KL3098', type:'Bike', status:'Inspection', updated:'10 mins ago', assignee:'Arjun (Mechanic)', notes:'' },
       ],
       garageAlerts: [
-        { id:'ga1', icon:'₹', title:'CHALLAN', pill:'Great Driving', pillClass:'p-success', updated:'Updated on 1 Feb 2026', count:0 },
-        { id:'ga2', icon:'🚗', title:'INSURANCE', pill:'Active', pillClass:'p-info', updated:'Updated on 1 Feb 2026', count:1 },
+        { id:'ga1', icon:'₹', title:'CHALLAN', pill:'Great Driving', pillClass:'p-success', updated:'Updated on 1 Feb 2026' },
+        { id:'ga2', icon:'🚗', title:'INSURANCE', pill:'Active', pillClass:'p-info', updated:'Updated on 1 Feb 2026' },
       ],
       employeeAlerts: [
-        { id:'ea1', icon:'⏰', title:'Inspection Missed', pill:'Pending', pillClass:'p-warn', updated:'Updated 15 mins ago', count:1 },
-        { id:'ea2', icon:'🧰', title:'Repair', pill:'Done', pillClass:'p-success', updated:'Updated 4 hours ago', count:0 },
-        { id:'ea3', icon:'🗣️', title:'Complaint', pill:'New', pillClass:'p-danger', updated:'Yesterday', count:1 },
+        { id:'ea1', icon:'⏰', title:'Inspection Missed', pill:'Pending', pillClass:'p-warn', updated:'Updated 15 mins ago' },
+        { id:'ea2', icon:'🧰', title:'Repair', pill:'Done', pillClass:'p-success', updated:'Updated 4 hours ago' },
+        { id:'ea3', icon:'🗣️', title:'Complaint', pill:'New', pillClass:'p-danger', updated:'Yesterday' },
       ],
       garages: [
         { id:'g1', name:'RapidFix Garage', city:'Mumbai', vehiclesToday:18, status:'Active' },
@@ -696,32 +680,19 @@
         { id:'g3', name:'Green Valley Motors', city:'Mumbai', vehiclesToday:7, status:'Active' },
       ],
       adminAlerts: [
-        { id:'aa1', icon:'🧾', title:'Billing Delay', pill:'High', pillClass:'p-warn', updated:'Today', count:3 },
-        { id:'aa2', icon:'⚠️', title:'Complaint Spike', pill:'Urgent', pillClass:'p-danger', updated:'Today', count:2 },
-        { id:'aa3', icon:'✅', title:'Compliance OK', pill:'Stable', pillClass:'p-success', updated:'Today', count:0 },
+        { id:'aa1', icon:'🧾', title:'Billing Delay', pill:'High', pillClass:'p-warn', updated:'Today' },
+        { id:'aa2', icon:'⚠️', title:'Complaint Spike', pill:'Urgent', pillClass:'p-danger', updated:'Today' },
+        { id:'aa3', icon:'✅', title:'Compliance OK', pill:'Stable', pillClass:'p-success', updated:'Today' },
       ],
       modal: { mode:'new', editingId:null }
     };
 
-    // ------------------------ Helpers ------------------------
-    const $ = (sel, root=document) => root.querySelector(sel);
-    const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
-
-    const toast = $('#toast');
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 1200);
+    function pillClass(status){
+      if(status === 'Ready') return 'p-success';
+      if(status === 'Delivered') return 'p-info';
+      if(status === 'Repair' || status === 'Inspection') return 'p-warn';
+      return 'p-info';
     }
-
-    function pillForStatus(status){
-      if(status === 'Inspection') return { cls:'p-warn' };
-      if(status === 'Repair') return { cls:'p-warn' };
-      if(status === 'Ready') return { cls:'p-success' };
-      if(status === 'Delivered') return { cls:'p-info' };
-      return { cls:'p-info' };
-    }
-
     function iconForType(type){
       if(type === 'Bike') return '🏍️';
       if(type === 'Car') return '🚗';
@@ -731,7 +702,6 @@
     }
 
     function makeVehicleItem(v){
-      const {cls} = pillForStatus(v.status);
       const el = document.createElement('div');
       el.className = 'item';
       el.innerHTML = `
@@ -743,7 +713,7 @@
           </div>
         </div>
         <div class="right">
-          <span class="pill ${cls}">${v.status}</span>
+          <span class="pill ${pillClass(v.status)}">${v.status}</span>
           <div class="chev" title="Open" data-open-vehicle="${v.id}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
           </div>
@@ -752,8 +722,8 @@
       return el;
     }
 
-    // ------------------------ Render ------------------------
-    function renderGarageVehicles(){
+    function render(){
+      // Garage vehicle lists
       const left = $('#garageVehiclesLeft');
       const right = $('#garageVehiclesRight');
       const all = $('#garageVehiclesAll');
@@ -761,24 +731,18 @@
       right.innerHTML = '';
       all.innerHTML = '';
 
-      const first = state.vehicles.slice(0,2);
-      const second = state.vehicles.slice(2,4);
-
-      first.forEach(v => left.appendChild(makeVehicleItem(v)));
-      second.forEach(v => right.appendChild(makeVehicleItem(v)));
+      state.vehicles.slice(0,2).forEach(v => left.appendChild(makeVehicleItem(v)));
+      state.vehicles.slice(2,4).forEach(v => right.appendChild(makeVehicleItem(v)));
       state.vehicles.forEach(v => all.appendChild(makeVehicleItem(v)));
 
       // KPIs
       $('#kpiTotal').textContent = String(state.vehicles.length);
-      const inProgress = state.vehicles.filter(v => ['Inspection','Repair'].includes(v.status)).length;
-      const ready = state.vehicles.filter(v => v.status === 'Ready').length;
-      $('#kpiProg').textContent = String(inProgress);
-      $('#kpiReady').textContent = String(ready);
-    }
+      $('#kpiProg').textContent = String(state.vehicles.filter(v => ['Inspection','Repair'].includes(v.status)).length);
+      $('#kpiReady').textContent = String(state.vehicles.filter(v => v.status === 'Ready').length);
 
-    function renderGarageAlerts(){
-      const list = $('#garageAlerts');
-      list.innerHTML = '';
+      // Garage alerts
+      const gAlerts = $('#garageAlerts');
+      gAlerts.innerHTML = '';
       state.garageAlerts.forEach(a => {
         const el = document.createElement('div');
         el.className = 'item';
@@ -795,49 +759,38 @@
               <div style="font-size:12px;color:#9CA3AF;font-weight:900">${a.updated}</div>
               <div class="pill p-info" style="padding:6px 10px">↻ Refresh</div>
             </div>
-            <div class="chev" data-open-alert="${a.id}" title="Open">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-            </div>
           </div>
         `;
-        list.appendChild(el);
-      });
-    }
-
-    function renderEmployeeTasks(){
-      const list = $('#employeeTaskList');
-      list.innerHTML = '';
-      const tasks = state.vehicles.slice(0,3).map(v => {
-        const task = v.status === 'Repair' ? 'Repair' : (v.status === 'Ready' ? 'Delivery Prep' : 'Inspection');
-        const pill = v.status === 'Ready' ? {text:'Ready', cls:'p-success'} : {text:'Pending', cls:'p-warn'};
-        return { id:v.id, plate:v.plate, task, updated:v.updated, pill };
+        gAlerts.appendChild(el);
       });
 
-      tasks.forEach(t => {
+      // Employee tasks
+      const tList = $('#employeeTaskList');
+      tList.innerHTML = '';
+      state.vehicles.slice(0,3).forEach(v => {
         const el = document.createElement('div');
         el.className = 'item';
         el.innerHTML = `
           <div class="left">
             <div class="iconBox">🚘</div>
             <div class="meta">
-              <div class="t">${t.plate}</div>
-              <div class="u">${t.task} • Updated ${t.updated}</div>
+              <div class="t">${v.plate}</div>
+              <div class="u">${v.status} • Updated ${v.updated}</div>
             </div>
           </div>
           <div class="right">
-            <span class="pill ${t.pill.cls}">${t.pill.text}</span>
-            <div class="chev" data-open-vehicle="${t.id}" title="Open">
+            <span class="pill ${pillClass(v.status)}">${v.status === 'Inspection' ? 'Pending' : v.status}</span>
+            <div class="chev" data-open-vehicle="${v.id}" title="Open">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
             </div>
           </div>
         `;
-        list.appendChild(el);
+        tList.appendChild(el);
       });
-    }
 
-    function renderEmployeeAlerts(){
-      const list = $('#employeeAlerts');
-      list.innerHTML = '';
+      // Employee alerts
+      const eAlerts = $('#employeeAlerts');
+      eAlerts.innerHTML = '';
       state.employeeAlerts.forEach(a => {
         const el = document.createElement('div');
         el.className = 'item';
@@ -851,22 +804,18 @@
           </div>
           <div class="right">
             <span class="pill ${a.pillClass}">${a.pill}</span>
-            <div class="chev" data-open-alert="${a.id}" title="Open">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-            </div>
           </div>
         `;
-        list.appendChild(el);
+        eAlerts.appendChild(el);
       });
-    }
 
-    function renderAdminGarages(){
-      const list = $('#adminGarageList');
-      const mini = $('#adminGarageListMini');
-      list.innerHTML = '';
-      mini.innerHTML = '';
+      // Admin garages
+      const adminList = $('#adminGarageList');
+      const adminMini = $('#adminGarageListMini');
+      adminList.innerHTML = '';
+      adminMini.innerHTML = '';
       state.garages.forEach(g => {
-        const pill = g.status === 'Active' ? {text:'Active', cls:'p-success'} : {text:g.status, cls:'p-warn'};
+        const cls = g.status === 'Active' ? 'p-success' : 'p-warn';
         const el = document.createElement('div');
         el.className = 'item';
         el.innerHTML = `
@@ -878,13 +827,10 @@
             </div>
           </div>
           <div class="right">
-            <span class="pill ${pill.cls}">${pill.text}</span>
-            <div class="chev" data-open-garage="${g.id}" title="Open">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-            </div>
+            <span class="pill ${cls}">${g.status}</span>
           </div>
         `;
-        list.appendChild(el);
+        adminList.appendChild(el);
 
         const el2 = document.createElement('div');
         el2.className = 'item';
@@ -896,15 +842,14 @@
               <div class="u">${g.vehiclesToday} vehicles today</div>
             </div>
           </div>
-          <div class="right"><span class="pill ${pill.cls}">${pill.text}</span></div>
+          <div class="right"><span class="pill ${cls}">${g.status}</span></div>
         `;
-        mini.appendChild(el2);
+        adminMini.appendChild(el2);
       });
-    }
 
-    function renderAdminAlerts(){
-      const list = $('#adminAlerts');
-      list.innerHTML = '';
+      // Admin alerts
+      const aAlerts = $('#adminAlerts');
+      aAlerts.innerHTML = '';
       state.adminAlerts.forEach(a => {
         const el = document.createElement('div');
         el.className = 'item';
@@ -918,32 +863,22 @@
           </div>
           <div class="right">
             <span class="pill ${a.pillClass}">${a.pill}</span>
-            <div class="chev" data-open-alert="${a.id}" title="Open">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-            </div>
           </div>
         `;
-        list.appendChild(el);
+        aAlerts.appendChild(el);
       });
     }
 
-    function renderAll(){
-      renderGarageVehicles();
-      renderGarageAlerts();
-      renderEmployeeTasks();
-      renderEmployeeAlerts();
-      renderAdminGarages();
-      renderAdminAlerts();
+    // Scoped tab activation (fixes platform “application error” from wrong selectors)
+    function activateTab(rootEl, tabId){
+      $$('.tab', rootEl).forEach(t => t.classList.remove('show'));
+      const target = rootEl.querySelector('#' + tabId);
+      if(!target){ showToast('Tab not found'); return; }
+      target.classList.add('show');
+      $$('.seg button[data-tab]', rootEl).forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
     }
 
-    // ------------------------ Tabs (Garage + Admin) ------------------------
-    function activateTab(groupRoot, tabId){
-      $$('.tab', groupRoot).forEach(t => t.classList.remove('show'));
-      $('#' + tabId).classList.add('show');
-      $$('.seg button[data-tab]', groupRoot).forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
-    }
-
-    // ------------------------ Modal ------------------------
+    // Modal
     const overlay = $('#overlay');
     const modalTitle = $('#modalTitle');
     const fPlate = $('#fPlate');
@@ -987,12 +922,12 @@
 
     $('#saveBtn').addEventListener('click', () => {
       const plate = fPlate.value.trim().toUpperCase();
+      if(!plate){ showToast('Enter vehicle number'); return; }
+
       const type = fType.value;
       const status = fStatus.value;
       const assignee = fAssignee.value;
       const notes = fNotes.value.trim();
-
-      if(!plate){ showToast('Enter vehicle number'); return; }
 
       if(state.modal.mode === 'new'){
         const id = 'v' + Math.random().toString(16).slice(2,7);
@@ -1001,70 +936,70 @@
       } else {
         const v = state.vehicles.find(x => x.id === state.modal.editingId);
         if(v){
-          v.plate = plate;
-          v.type = type;
-          v.status = status;
-          v.assignee = assignee;
-          v.notes = notes;
-          v.updated = 'just now';
+          v.plate = plate; v.type = type; v.status = status; v.assignee = assignee; v.notes = notes; v.updated = 'just now';
           showToast('Updated');
         }
       }
 
       closeModal();
-      renderAll();
+      render();
     });
 
-    // ------------------------ Click Handling ------------------------
+    // Click handling (safe)
     document.addEventListener('click', (e) => {
       const t = e.target;
 
-      // Garage tabs (top-left big card)
-      const garageTabBtn = t.closest('[aria-label="Garage tabs"] button[data-tab]');
-      if(garageTabBtn){
-        activateTab(document.querySelector('[aria-label="Garage dashboard"]'), garageTabBtn.dataset.tab);
+      // Garage tabs
+      const gBtn = t.closest('[aria-label="Garage tabs"] button[data-tab]');
+      if(gBtn){
+        e.preventDefault();
+        activateTab($('#garageRoot'), gBtn.dataset.tab);
         return;
       }
 
-      // Admin tabs (right card)
-      const adminTabBtn = t.closest('[aria-label="Admin tabs"] button[data-tab]');
-      if(adminTabBtn){
-        activateTab(document.querySelector('[aria-label="Admin panel"]'), adminTabBtn.dataset.tab);
+      // Admin tabs
+      const aBtn = t.closest('[aria-label="Admin tabs"] button[data-tab]');
+      if(aBtn){
+        e.preventDefault();
+        activateTab($('#adminRoot'), aBtn.dataset.tab);
         return;
       }
 
-      // Dock selection (inside garage card)
-      const dockBtn = t.closest('.dock .dBtn');
-      if(dockBtn){
-        $$('.dock .dBtn').forEach(b => b.classList.toggle('active', b === dockBtn));
-        if(dockBtn.dataset.dock === 'vehicles') activateTab(document.querySelector('[aria-label="Garage dashboard"]'), 'gVehicles');
-        if(dockBtn.dataset.dock === 'alerts') activateTab(document.querySelector('[aria-label="Garage dashboard"]'), 'gAlerts');
-        if(dockBtn.dataset.dock === 'home') activateTab(document.querySelector('[aria-label="Garage dashboard"]'), 'gOverview');
-        showToast(`${dockBtn.dataset.dock} (demo)`);
+      // Dock
+      const dBtn = t.closest('.dock .dBtn');
+      if(dBtn){
+        e.preventDefault();
+        $$('.dock .dBtn').forEach(b => b.classList.toggle('active', b === dBtn));
+        if(dBtn.dataset.dock === 'vehicles') activateTab($('#garageRoot'), 'g_vehicles');
+        if(dBtn.dataset.dock === 'alerts') activateTab($('#garageRoot'), 'g_alerts');
+        if(dBtn.dataset.dock === 'home') activateTab($('#garageRoot'), 'g_overview');
         return;
       }
 
-      // Quick actions
+      // Quick action / FAB
       const act = t.closest('[data-action]');
       if(act){
+        e.preventDefault();
         const a = act.dataset.action;
         if(a === 'newVehicle') openNewVehicle();
-        else showToast(`${a} (demo)`);
+        else showToast(a + ' (demo)');
         return;
       }
 
-      // Open vehicle card
+      // Open vehicle
       const openV = t.closest('[data-open-vehicle]');
       if(openV){
+        e.preventDefault();
         openVehicle(openV.dataset.openVehicle);
         return;
       }
 
-      // Sidebar buttons
+      // Sidebar
       const sb = t.closest('.sbBtn');
       if(sb){
+        e.preventDefault();
         $$('.sbBtn').forEach(b => b.classList.toggle('active', b === sb));
-        showToast(`${sb.dataset.nav} (demo)`);
+        showToast(sb.dataset.nav + ' (demo)');
         return;
       }
 
@@ -1072,16 +1007,12 @@
       if(t.closest('#hdrCopy')) showToast('Copied (demo)');
       if(t.closest('#hdrBell')) showToast('Notifications (demo)');
 
-      // Reports demo
+      // Reports
       if(t.closest('[data-open="report"]')) showToast('Open report (demo)');
-
-      // Alerts demo
-      if(t.closest('[data-open-alert]')) showToast('Open alert (demo)');
-      if(t.closest('[data-open-garage]')) showToast('Open garage (demo)');
     });
 
-    // ------------------------ Init ------------------------
-    renderAll();
+    // Init
+    render();
   </script>
 </body>
 </html>
