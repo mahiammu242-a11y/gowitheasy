@@ -1,1018 +1,557 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rapido-Style Garage+ Dashboard – Static Preview</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Garage Dashboard — Palette Preview</title>
   <style>
+    /* =========================
+       BRAND PALETTE (Coolors)
+       ========================= */
     :root{
-      --bg1:#E7E7E7;
-      --bg2:#F7F7F7;
-      --card:rgba(255,255,255,.92);
-      --text:#0F172A;
-      --muted:#6B7280;
-      --line:rgba(229,231,235,.80);
-      --teal:#0F6B68;
-      --teal2:#0A4A48;
-      --tealSoft:#E6F3F2;
-      --success:#22C55E;
-      --warn:#F59E0B;
-      --danger:#EF4444;
-      --shadow:0 18px 40px rgba(15,23,42,.12);
-      --shadow2:0 10px 24px rgba(15,23,42,.10);
-      --r:28px;
+      --amber-0: #FF7B00;
+      --amber-1: #FF8800;
+      --amber-2: #FF9500;
+      --amber-3: #FFA200;
+      --amber-4: #FFAA00;
+      --amber-5: #FFB700;
+      --amber-6: #FFC300;
+      --amber-7: #FFD000;
+      --amber-8: #FFDD00;
+      --amber-9: #FFEA00;
+
+      /* Neutrals for elegance */
+      --bg: #0F0F0F;
+      --panel: #1A1A1A;
+      --panel-2: #1F1F1F;
+      --border: rgba(255, 170, 0, 0.18);
+      --text: #EAEAEA;
+      --muted: #B0B0B0;
+
+      /* Status */
+      --danger: #E53935;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
+
+    /* =========================
+       BASE
+       ========================= */
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text);
-      background: radial-gradient(1200px 520px at 50% 8%, #D6D6D6 0%, var(--bg1) 48%, var(--bg2) 100%);
-      overflow-x:hidden;
-    }
-    .app{max-width:1200px;margin:0 auto;padding:18px}
-    .shell{display:grid;grid-template-columns:92px 1fr;gap:16px;align-items:start}
-
-    /* Header */
-    .header{
-      grid-column:1 / -1;
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      padding:12px 14px;border-radius:var(--r);
-      background:rgba(255,255,255,.70);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow2);
-      backdrop-filter: blur(10px);
-    }
-    .brandRow{display:flex;align-items:center;gap:10px}
-    .logo{
-      width:40px;height:40px;border-radius:14px;
-      background:linear-gradient(180deg, rgba(15,107,104,.20) 0%, rgba(15,107,104,.06) 100%);
-      border:1px solid rgba(15,107,104,.18);
-      display:grid;place-items:center;font-weight:1000;
-    }
-    .brandTxt{display:flex;flex-direction:column;gap:2px}
-    .brandTxt b{font-weight:1000}
-    .brandTxt span{font-size:12px;color:var(--muted);font-weight:800}
-    .hdrActions{display:flex;align-items:center;gap:10px}
-    .iconBtn{
-      width:44px;height:44px;border-radius:18px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.90);
-      box-shadow:var(--shadow2);
-      display:grid;place-items:center;
-      cursor:pointer;user-select:none;
-      transition:transform .15s ease;
-    }
-    .iconBtn:active{transform:scale(.98)}
-    .iconBtn svg{width:18px;height:18px}
-    .avatar{
-      width:44px;height:44px;border-radius:18px;
-      border:1px solid var(--line);
-      background:linear-gradient(180deg, #fff 0%, #f3f3f3 100%);
-      box-shadow:var(--shadow2);
-      display:grid;place-items:center;
-      font-weight:1000;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(255, 157, 0, 0.12), transparent 60%),
+                  radial-gradient(1000px 700px at 95% 10%, rgba(255, 234, 0, 0.10), transparent 55%),
+                  var(--bg);
+      color: var(--text);
     }
 
-    /* Sidebar */
-    .sidebar{
-      position:sticky;top:18px;
-      height:calc(100vh - 36px);
-      border-radius:var(--r);
-      background:rgba(255,255,255,.65);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow2);
-      backdrop-filter: blur(10px);
-      padding:10px;
-      display:flex;flex-direction:column;gap:10px;align-items:center;
-    }
-    .sbBtn{
-      width:100%;height:48px;border-radius:18px;
-      background:#fff;border:1px solid var(--line);
-      box-shadow:0 8px 16px rgba(15,23,42,.07);
-      display:grid;place-items:center;
-      cursor:pointer;user-select:none;
-    }
-    .sbBtn.active{background:rgba(15,107,104,.12);border-color:rgba(15,107,104,.22)}
-    .sbBtn svg{width:18px;height:18px}
-    .sbSep{height:12px}
+    a{ color: inherit; text-decoration: none; }
+    .container{ max-width: 1200px; margin: 0 auto; padding: 18px; }
 
-    /* Cards */
-    .card{
-      border-radius:var(--r);
-      background:var(--card);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      backdrop-filter: blur(10px);
+    /* =========================
+       NAVBAR
+       ========================= */
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: linear-gradient(90deg, var(--amber-1), var(--amber-5));
+      color: #1A1A1A;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      border-bottom: 1px solid rgba(0,0,0,.15);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 14px 18px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight: 800;
+      letter-spacing: .3px;
+    }
+    .badge-dot{
+      width: 12px; height: 12px;
+      border-radius: 999px;
+      background: var(--amber-9);
+      box-shadow: 0 0 18px rgba(255, 234, 0, .55);
+      border: 1px solid rgba(0,0,0,.25);
+    }
+    .nav-links{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      font-weight: 600;
+    }
+    .nav-links a{
+      padding: 8px 10px;
+      border-radius: 999px;
+      transition: transform .12s ease, background .12s ease;
+    }
+    .nav-links a:hover{
+      background: rgba(255,255,255,.20);
+      transform: translateY(-1px);
+    }
+    .nav-links a.active{
+      background: rgba(0,0,0,.14);
+      border: 1px solid rgba(0,0,0,.18);
+      box-shadow: inset 0 -2px 0 0 var(--amber-9);
     }
 
-    /* Segmented tabs */
-    .seg{
-      display:flex;gap:8px;align-items:center;
-      padding:8px;border-radius:999px;
-      background:rgba(255,255,255,.70);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow2);
-      backdrop-filter: blur(10px);
-      width:max-content;
-    }
-    .seg button{
-      border:0;background:transparent;
-      padding:10px 14px;border-radius:999px;
-      font-weight:1000;font-size:13px;
-      color:#334155;cursor:pointer;user-select:none;
-    }
-    .seg button.active{
-      background:linear-gradient(180deg, var(--teal) 0%, var(--teal2) 100%);
-      color:#fff;
-      box-shadow:0 14px 22px rgba(15,107,104,.20);
-    }
-
-    /* Layout */
-    .board{display:grid;grid-template-columns: 1.45fr 1fr;gap:16px;align-items:start}
-    .lower{display:grid;grid-template-columns: repeat(3, minmax(0, 1fr));gap:16px;margin-top:16px}
-
-    /* Main Garage */
-    .garageWrap{padding:14px}
-    .garageTop{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:6px 2px 10px}
-    .garageTitle h1{
-      margin:0;
-      font-size:34px;font-weight:1000;
-      font-family: ui-serif, Georgia, "Times New Roman", serif;
-    }
-    .loc{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:13px;color:var(--muted);font-weight:900}
-    .dot{width:10px;height:10px;border-radius:999px;background:var(--success);box-shadow:0 0 0 6px rgba(34,197,94,.16)}
-    .heroArt{
-      width:360px;max-width:100%;
-      height:170px;border-radius:26px;
-      background:
-        radial-gradient(220px 120px at 66% 60%, rgba(15,107,104,.18) 0%, rgba(15,107,104,0) 70%),
-        linear-gradient(180deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.36) 100%);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow2);
-      display:grid;place-items:center;
-      position:relative;overflow:hidden;
-    }
-    .heroArt .bike{font-size:66px;opacity:.95}
-
-    .quickRow{display:flex;gap:12px;flex-wrap:wrap;padding:10px 0 4px}
-    .qBtn{
-      width:110px;padding:12px 10px;border-radius:24px;
-      background:rgba(255,255,255,.86);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow2);
-      display:flex;flex-direction:column;align-items:center;gap:8px;
-      cursor:pointer;user-select:none;
-      transition:transform .15s ease;
-    }
-    .qBtn:active{transform:scale(.99)}
-    .qIcon{
-      width:46px;height:46px;border-radius:18px;
-      background:var(--tealSoft);
-      border:1px solid rgba(15,107,104,.16);
-      display:grid;place-items:center;
-      font-weight:1000;
-    }
-    .qLbl{font-size:11px;font-weight:1000;color:#334155;text-align:center;line-height:1.1}
-
-    .kpis{
-      margin-top:14px;
-      background:rgba(255,255,255,.70);
-      border:1px solid var(--line);
-      border-radius:26px;
-      box-shadow:var(--shadow2);
+    /* =========================
+       LAYOUT
+       ========================= */
+    .grid{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .nav-links{ display:none; }
+    }
+
+    /* =========================
+       CARDS / PANELS
+       ========================= */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)),
+                  var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
       overflow:hidden;
     }
-    .kpi{padding:14px 16px}
-    .kpi:not(:last-child){border-right:1px solid rgba(229,231,235,.75)}
-    .kpiNum{font-size:30px;font-weight:1000}
-    .kpiLbl{font-size:12px;color:var(--muted);font-weight:900;margin-top:2px}
-    .kpiSub{font-size:11px;color:#9CA3AF;font-weight:800;margin-top:6px}
-
-    .twoCols{display:grid;grid-template-columns: 1fr 1fr;gap:14px;margin-top:14px}
-    .panel{padding:14px}
-    .panelHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
-    .panelHead b{font-size:14px;font-weight:1000}
-    .panelHead span{font-size:12px;color:#9CA3AF;font-weight:900}
-
-    .list{display:flex;flex-direction:column;gap:12px}
-    .item{
-      background:rgba(255,255,255,.92);
-      border:1px solid var(--line);
-      border-radius:22px;
-      box-shadow:var(--shadow2);
-      padding:12px;
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
+    .card-header{
+      padding: 16px 16px 10px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
     }
-    .left{display:flex;gap:12px;align-items:center;min-width:0}
-    .iconBox{
-      width:52px;height:52px;border-radius:18px;
-      background:linear-gradient(180deg, rgba(15,107,104,.14) 0%, rgba(15,107,104,.06) 100%);
-      border:1px solid rgba(15,107,104,.18);
-      display:grid;place-items:center;
-      font-weight:1000;
-      flex:0 0 auto;
+    .card-title{
+      margin:0;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--amber-4);
+      letter-spacing: .2px;
     }
-    .meta{min-width:0}
-    .t{font-weight:1000;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:28ch}
-    .u{margin-top:5px;font-size:11px;color:#9CA3AF;font-weight:900}
+    .card-sub{
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .card-body{ padding: 0 16px 16px; }
 
-    .pill{
-      display:inline-flex;align-items:center;gap:6px;
-      padding:7px 10px;border-radius:999px;
-      font-size:12px;font-weight:1000;
-      border:1px solid transparent;
+    /* =========================
+       KPI STRIP
+       ========================= */
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 16px;
+    }
+    @media (max-width: 650px){
+      .kpis{ grid-template-columns: 1fr; }
+    }
+    .kpi{
+      background: var(--panel-2);
+      border: 1px solid rgba(255, 170, 0, 0.14);
+      border-radius: 16px;
+      padding: 14px;
+      display:flex;
+      gap: 12px;
+      align-items:center;
+    }
+    .kpi-icon{
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, rgba(255, 123, 0, .25), rgba(255, 234, 0, .10));
+      border: 1px solid rgba(255, 170, 0, .18);
+      display:grid;
+      place-items:center;
+      color: var(--amber-8);
+      box-shadow: 0 0 22px rgba(255, 170, 0, .14);
+      flex: 0 0 auto;
+      font-weight: 900;
+    }
+    .kpi-label{ font-size: 12px; color: var(--muted); }
+    .kpi-value{
+      font-size: 20px;
+      font-weight: 900;
+      margin-top: 2px;
+      color: var(--amber-8);
+      letter-spacing: .3px;
+    }
+
+    /* =========================
+       BUTTONS
+       ========================= */
+    .btn-row{ display:flex; gap: 10px; flex-wrap: wrap; }
+    .btn{
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
       user-select:none;
     }
-    .p-success{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.22);color:#166534}
-    .p-warn{background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.22);color:#92400E}
-    .p-danger{background:rgba(239,68,68,.10);border-color:rgba(239,68,68,.20);color:#991B1B}
-    .p-info{background:rgba(59,130,246,.10);border-color:rgba(59,130,246,.20);color:#1D4ED8}
+    .btn:active{ transform: translateY(1px); }
 
-    .right{display:flex;align-items:center;gap:10px;flex:0 0 auto}
-    .chev{
-      width:38px;height:38px;border-radius:16px;
-      border:1px solid var(--line);
-      background:#fff;
-      display:grid;place-items:center;
-      cursor:pointer;user-select:none;
+    .btn-primary{
+      color: #fff;
+      background: linear-gradient(90deg, var(--amber-0), var(--amber-3));
+      box-shadow: 0 14px 26px rgba(255, 123, 0, .18);
     }
-    .chev svg{width:16px;height:16px}
-
-    /* Dock inside big card */
-    .dockWrap{display:flex;justify-content:center;margin-top:12px}
-    .dock{
-      width:min(520px, 100%);
-      display:flex;gap:10px;justify-content:space-between;
-      padding:10px;border-radius:22px;
-      background:rgba(255,255,255,.82);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow2);
-    }
-    .dock .dBtn{
-      flex:1;border-radius:18px;padding:10px 8px;
-      display:flex;flex-direction:column;align-items:center;gap:6px;
-      font-size:10px;font-weight:1000;
-      cursor:pointer;user-select:none;
-    }
-    .dock svg{width:18px;height:18px}
-    .dock .dBtn.active{background:rgba(15,107,104,.12)}
-
-    /* Mini cards */
-    .mini{padding:14px}
-    .miniTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
-    .miniTitle{display:flex;flex-direction:column;gap:3px}
-    .miniTitle b{font-size:14px;font-weight:1000}
-    .miniTitle span{font-size:12px;color:#9CA3AF;font-weight:900}
-
-    .footerActions{display:flex;gap:10px;justify-content:space-between;margin-top:12px}
-    .fab{
-      flex:1;border-radius:18px;
-      background:rgba(255,255,255,.86);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow2);
-      padding:10px;
-      display:flex;align-items:center;justify-content:center;gap:8px;
-      font-weight:1000;font-size:12px;
-      cursor:pointer;user-select:none;
-    }
-    .fab .c{
-      width:34px;height:34px;border-radius:14px;
-      background:var(--tealSoft);
-      border:1px solid rgba(15,107,104,.16);
-      display:grid;place-items:center;
+    .btn-primary:hover{
+      background: linear-gradient(90deg, var(--amber-1), var(--amber-4));
+      box-shadow: 0 18px 34px rgba(255, 149, 0, .22);
+      transform: translateY(-1px);
     }
 
-    /* Tabs */
-    .tab{display:none}
-    .tab.show{display:block}
-
-    /* Modal + Toast */
-    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:center;justify-content:center;padding:16px;z-index:999}
-    .overlay.show{display:flex}
-    .modal{width:min(560px,100%);background:#fff;border-radius:26px;border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.25);overflow:hidden}
-    .mHead{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(15,107,104,.10);border-bottom:1px solid var(--line)}
-    .mHead strong{font-size:14px}
-    .mBody{padding:16px}
-    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
-    .field label{font-size:12px;font-weight:1000;color:#111827}
-    .field input,.field select{height:44px;border-radius:18px;border:1px solid rgba(229,231,235,.90);padding:0 12px;outline:none;font-size:13px}
-    .mActions{display:flex;gap:10px;justify-content:flex-end;padding:0 16px 16px}
-    .btn{border:0;cursor:pointer;border-radius:999px;padding:10px 14px;font-weight:1000;font-size:13px;user-select:none}
-    .btn.ghost{background:#fff;border:1px solid rgba(229,231,235,.90)}
-    .btn.primary{background:var(--teal);color:#fff}
-
-    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;background:rgba(15,23,42,.92);color:#fff;padding:10px 12px;border-radius:999px;font-weight:1000;font-size:12px;box-shadow:0 18px 40px rgba(0,0,0,.22);opacity:0;pointer-events:none;transition:opacity .2s ease, transform .2s ease;z-index:9999}
-    .toast.show{opacity:1; transform:translateX(-50%) translateY(-6px)}
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .shell{grid-template-columns:1fr}
-      .sidebar{display:none}
-      .board{grid-template-columns:1fr}
-      .lower{grid-template-columns:1fr}
-      .heroArt{width:100%;height:160px}
-      .twoCols{grid-template-columns:1fr}
+    .btn-secondary{
+      color: var(--amber-4);
+      background: transparent;
+      border: 1px solid rgba(255, 170, 0, .35);
     }
+    .btn-secondary:hover{
+      background: rgba(255, 170, 0, .08);
+      transform: translateY(-1px);
+    }
+
+    .btn-danger{
+      color: #fff;
+      background: linear-gradient(90deg, var(--danger), #B71C1C);
+      box-shadow: 0 14px 26px rgba(229, 57, 53, .18);
+    }
+
+    /* =========================
+       TABLE / LIST
+       ========================= */
+    .list{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      padding: 16px;
+    }
+    .item{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--panel-2);
+      border: 1px solid rgba(255, 170, 0, 0.12);
+      border-radius: 16px;
+    }
+    .thumb{
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, rgba(255, 234, 0, .16), rgba(255, 123, 0, .12));
+      border: 1px solid rgba(255, 170, 0, .18);
+      display:grid;
+      place-items:center;
+      font-weight: 900;
+      color: var(--amber-5);
+      flex: 0 0 auto;
+    }
+    .meta{ flex: 1 1 auto; min-width: 0; }
+    .meta .name{
+      font-weight: 900;
+      color: var(--amber-4);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .meta .sub{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .right{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .pill{
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 170, 0, .25);
+      color: #1A1A1A;
+      background: linear-gradient(90deg, var(--amber-6), var(--amber-9));
+    }
+    .pill.progress{
+      background: linear-gradient(90deg, var(--amber-3), var(--amber-6));
+    }
+    .pill.pending{
+      background: linear-gradient(90deg, var(--amber-2), var(--amber-4));
+    }
+    .pill.delayed{
+      color:#fff;
+      border-color: rgba(229,57,53,.35);
+      background: linear-gradient(90deg, var(--danger), #C62828);
+    }
+
+    .bar{
+      width: 140px;
+      height: 10px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255, 170, 0, 0.14);
+      border-radius: 999px;
+      overflow:hidden;
+    }
+    .bar > span{
+      display:block;
+      height: 100%;
+      width: var(--w, 60%);
+      background: linear-gradient(90deg, var(--amber-3), var(--amber-8));
+      box-shadow: 0 0 16px rgba(255, 208, 0, .22);
+    }
+
+    /* =========================
+       FORM
+       ========================= */
+    .form{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      padding: 16px;
+    }
+    label{
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .input, select, textarea{
+      width: 100%;
+      background: var(--panel-2);
+      color: var(--text);
+      border: 1px solid rgba(255, 170, 0, 0.16);
+      border-radius: 14px;
+      padding: 11px 12px;
+      outline: none;
+      transition: border-color .12s ease, box-shadow .12s ease;
+    }
+    textarea{ resize: vertical; min-height: 90px; }
+    .input:focus, select:focus, textarea:focus{
+      border-color: rgba(255, 170, 0, 0.55);
+      box-shadow: 0 0 0 4px rgba(255, 170, 0, 0.10);
+    }
+
+    /* =========================
+       PALETTE STRIP
+       ========================= */
+    .palette{
+      display:flex;
+      gap: 8px;
+      padding: 16px;
+      flex-wrap: wrap;
+    }
+    .swatch{
+      width: 54px;
+      height: 34px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,.25);
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+    }
+
+    /* Footer note */
+    .note{
+      color: var(--muted);
+      font-size: 12px;
+      padding: 0 16px 16px;
+    }
+    .note b{ color: var(--amber-8); }
   </style>
 </head>
 
 <body>
-  <div class="app">
-    <header class="header">
-      <div class="brandRow">
-        <div class="logo">↯</div>
-        <div class="brandTxt">
-          <b>Garage+ Dashboard</b>
-          <span>Rapido-like minimal UX – static preview</span>
-        </div>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="badge-dot"></span>
+        <span>GarageDash</span>
       </div>
 
-      <div class="hdrActions">
-        <button class="iconBtn" id="hdrCopy" aria-label="Copy">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 9h10v10H9z"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-          </svg>
-        </button>
-        <button class="iconBtn" id="hdrBell" aria-label="Notifications">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-          </svg>
-        </button>
-        <div class="avatar" title="Profile">MG</div>
-      </div>
-    </header>
+      <nav class="nav-links" aria-label="Top navigation">
+        <a class="active" href="#">Dashboard</a>
+        <a href="#">Vehicles</a>
+        <a href="#">Employees</a>
+        <a href="#">Reports</a>
+      </nav>
 
-    <div class="shell">
-      <aside class="sidebar" aria-label="Navigation">
-        <div class="sbBtn active" data-nav="dash" title="Dashboard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 3h8v8H3z"/><path d="M13 3h8v5h-8z"/><path d="M13 10h8v11h-8z"/><path d="M3 13h8v8H3z"/>
-          </svg>
-        </div>
-        <div class="sbBtn" data-nav="vehicles" title="Vehicles">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M3 17h2l1-5h12l1 5h2"/><path d="M6 12l1-4h10l1 4"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/>
-          </svg>
-        </div>
-        <div class="sbBtn" data-nav="alerts" title="Alerts">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7"/>
-            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-          </svg>
-        </div>
-        <div class="sbSep"></div>
-        <div class="sbBtn" data-nav="settings" title="Settings">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7z"/>
-            <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 0 1-1.41 3.41h-.19a1.7 1.7 0 0 0-1.6 1.12 1.7 1.7 0 0 0 .38 1.86 2 2 0 0 1-2.83 2.83 1.7 1.7 0 0 0-1.86-.38 1.7 1.7 0 0 0-1.12 1.6v.19A2 2 0 0 1 8.74 23h-.08a2 2 0 0 1-1.99-1.66 1.7 1.7 0 0 0-1.12-1.6 1.7 1.7 0 0 0-1.86.38A2 2 0 0 1 .84 17.29l.06-.06A1.7 1.7 0 0 0 1.24 15a1.7 1.7 0 0 0-1.6-1.12H-.55A2 2 0 0 1-1.96 10.47l.06-.06A1.7 1.7 0 0 0-1.56 8.54 2 2 0 0 1 1.27 5.71a1.7 1.7 0 0 0 1.86.38 1.7 1.7 0 0 0 1.12-1.6V4.3A2 2 0 0 1 6.24 2.3h.19a1.7 1.7 0 0 0 1.6-1.12 2 2 0 0 1 3.41 1.41v.19a1.7 1.7 0 0 0 1.12 1.6 1.7 1.7 0 0 0 1.86-.38A2 2 0 0 1 19.4 9a1.7 1.7 0 0 0-.34 1.87"/>
-          </svg>
-        </div>
-      </aside>
-
-      <main>
-        <div class="board">
-
-          <!-- MAIN GARAGE DASHBOARD -->
-          <section class="card garageWrap" id="garageRoot" aria-label="Garage dashboard">
-            <div class="garageTop">
-              <div class="seg" aria-label="Garage tabs">
-                <button class="active" data-tab="g_overview">Overview</button>
-                <button data-tab="g_vehicles">Vehicles</button>
-                <button data-tab="g_alerts">Alerts</button>
-              </div>
-
-              <div class="seg" style="opacity:.9" aria-label="Top mini tabs">
-                <button class="active" type="button">Garage</button>
-                <button type="button">Reports</button>
-                <button type="button">Alerts</button>
-              </div>
-            </div>
-
-            <div class="tab show" id="g_overview">
-              <div style="display:flex;gap:16px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
-                <div class="garageTitle">
-                  <h1>RapidFix Garage</h1>
-                  <div class="loc"><span class="dot"></span> Mumbai</div>
-
-                  <div class="quickRow">
-                    <div class="qBtn" data-action="newVehicle"><div class="qIcon">+</div><div class="qLbl">Add Vehicle</div></div>
-                    <div class="qBtn" data-action="upload"><div class="qIcon">📷</div><div class="qLbl">Upload Inspection</div></div>
-                    <div class="qBtn" data-action="bill"><div class="qIcon">🧾</div><div class="qLbl">Generate Bill</div></div>
-                    <div class="qBtn" data-action="assign"><div class="qIcon">👨‍🔧</div><div class="qLbl">Assign Employee</div></div>
-                  </div>
-                </div>
-
-                <div class="heroArt" aria-hidden="true">
-                  <div class="bike">🏍️</div>
-                </div>
-              </div>
-
-              <div class="kpis">
-                <div class="kpi">
-                  <div class="kpiNum" id="kpiTotal">18</div>
-                  <div class="kpiLbl">Total Vehicles Today</div>
-                  <div class="kpiSub">Updated 10 mins ago</div>
-                </div>
-                <div class="kpi">
-                  <div class="kpiNum" id="kpiProg">5</div>
-                  <div class="kpiLbl">In Progress</div>
-                  <div class="kpiSub">Updated 2 hours</div>
-                </div>
-                <div class="kpi">
-                  <div class="kpiNum" id="kpiReady">7</div>
-                  <div class="kpiLbl">Ready for Delivery</div>
-                  <div class="kpiSub">Today vs Yesterday</div>
-                </div>
-              </div>
-
-              <div class="twoCols">
-                <div class="card panel">
-                  <div class="panelHead"><b>Vehicles</b><span>Updated 10 mins ago</span></div>
-                  <div class="list" id="garageVehiclesLeft"></div>
-                </div>
-
-                <div class="card panel">
-                  <div class="panelHead"><b>Vehicles</b><span>Updated 10 mins ago</span></div>
-                  <div class="list" id="garageVehiclesRight"></div>
-                </div>
-              </div>
-
-              <div class="dockWrap">
-                <div class="dock" aria-label="Bottom dock">
-                  <div class="dBtn active" data-dock="home">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M9 21V9h6v12"/></svg>
-                    Home
-                  </div>
-                  <div class="dBtn" data-dock="vehicles">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17h2l1-5h12l1 5h2"/><path d="M6 12l1-4h10l1 4"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
-                    Vehicles
-                  </div>
-                  <div class="dBtn" data-dock="alerts">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 7h18s-3 0-3-7"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                    Alerts
-                  </div>
-                  <div class="dBtn" data-dock="profits">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/></svg>
-                    Profits
-                  </div>
-                  <div class="dBtn" data-dock="profile">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 1 0-16 0"/><path d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8"/></svg>
-                    Profile
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="tab" id="g_vehicles">
-              <div class="panelHead" style="margin:8px 2px 12px"><b>All Vehicles</b><span>Tap card to update</span></div>
-              <div class="list" id="garageVehiclesAll"></div>
-            </div>
-
-            <div class="tab" id="g_alerts">
-              <div class="panelHead" style="margin:8px 2px 12px"><b>Garage Alerts</b><span>Updated today</span></div>
-              <div class="list" id="garageAlerts"></div>
-            </div>
-          </section>
-
-          <!-- ADMIN PANEL (unique IDs, no conflicts) -->
-          <section class="card mini" id="adminRoot" aria-label="Admin panel">
-            <div class="miniTop">
-              <div class="miniTitle">
-                <b>Admin</b>
-                <span>Monitor garages</span>
-              </div>
-              <div class="seg" aria-label="Admin tabs">
-                <button class="active" data-tab="admin_garages">Garages</button>
-                <button data-tab="admin_reports">Reports</button>
-                <button data-tab="admin_alerts">Alerts</button>
-              </div>
-            </div>
-
-            <div class="tab show" id="admin_garages">
-              <div class="list" id="adminGarageList"></div>
-            </div>
-
-            <div class="tab" id="admin_reports">
-              <div class="list">
-                <div class="item">
-                  <div class="left">
-                    <div class="iconBox">⭐</div>
-                    <div class="meta"><div class="t">Quality Score</div><div class="u">Updated today</div></div>
-                  </div>
-                  <div class="right">
-                    <span class="pill p-success">Good</span>
-                    <div class="chev" data-open="report" title="Open">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="left">
-                    <div class="iconBox">₹</div>
-                    <div class="meta"><div class="t">Revenue Trend</div><div class="u">This month</div></div>
-                  </div>
-                  <div class="right">
-                    <span class="pill p-info">View</span>
-                    <div class="chev" data-open="report" title="Open">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="tab" id="admin_alerts">
-              <div class="list" id="adminAlerts"></div>
-            </div>
-          </section>
-        </div>
-
-        <!-- LOWER ROW: 3 preview pages -->
-        <div class="lower" aria-label="Lower dashboards">
-          <section class="card mini" aria-label="Employee tasks">
-            <div class="miniTop">
-              <div class="miniTitle">
-                <b>My Tasks</b>
-                <span>Arjun Mehta • Mechanic</span>
-              </div>
-              <div class="avatar" style="width:40px;height:40px;border-radius:16px">AM</div>
-            </div>
-            <div class="list" id="employeeTaskList"></div>
-            <div class="footerActions">
-              <div class="fab" data-action="upload"><div class="c">📷</div>Upload Photo</div>
-              <div class="fab" data-action="done"><div class="c">✅</div>Mark Completed</div>
-              <div class="fab" data-action="notes"><div class="c">📝</div>Add Notes</div>
-            </div>
-          </section>
-
-          <section class="card mini" aria-label="Employee alerts">
-            <div class="miniTop">
-              <div class="miniTitle">
-                <b>My Tasks</b>
-                <span>Alerts • Vehicles • Garages</span>
-              </div>
-              <div class="seg" aria-label="Mini tabs">
-                <button class="active" type="button">Garages</button>
-                <button type="button">Vehicles</button>
-                <button type="button">Alerts</button>
-              </div>
-            </div>
-            <div class="list" id="employeeAlerts"></div>
-            <div class="footerActions">
-              <div class="fab" data-action="upload"><div class="c">📷</div>Upload Photo</div>
-              <div class="fab" data-action="done"><div class="c">✅</div>Done</div>
-              <div class="fab" data-action="notes"><div class="c">📝</div>Notes</div>
-            </div>
-          </section>
-
-          <section class="card mini" aria-label="Admin garages list">
-            <div class="miniTop">
-              <div class="miniTitle">
-                <b>Admin</b>
-                <span>Garages</span>
-              </div>
-              <div class="seg" aria-label="Admin mini tabs">
-                <button class="active" type="button">Garages</button>
-                <button type="button">Reports</button>
-                <button type="button">Alerts</button>
-              </div>
-            </div>
-            <div class="list" id="adminGarageListMini"></div>
-            <div class="footerActions">
-              <div class="fab" data-action="refresh"><div class="c">🔄</div>Refresh</div>
-              <div class="fab" data-action="filter"><div class="c">🎛️</div>Filter</div>
-              <div class="fab" data-action="settings"><div class="c">⚙️</div>Settings</div>
-            </div>
-          </section>
-        </div>
-      </main>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Vehicle modal">
-    <div class="modal">
-      <div class="mHead">
-        <strong id="modalTitle">+ New Vehicle</strong>
-        <button class="iconBtn" id="closeModal" aria-label="Close">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 6L6 18"/><path d="M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
-      <div class="mBody">
-        <div class="field">
-          <label>Vehicle Number</label>
-          <input id="fPlate" placeholder="TN44AB5698" />
-        </div>
-        <div class="field">
-          <label>Type</label>
-          <select id="fType">
-            <option>Bike</option><option>Car</option><option>Scooter</option><option>Auto</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Status</label>
-          <select id="fStatus">
-            <option>Inspection</option><option>Repair</option><option>Ready</option><option>Delivered</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Assigned To</label>
-          <select id="fAssignee">
-            <option>Arjun (Mechanic)</option>
-            <option>Meena (Inspector)</option>
-            <option>Unassigned</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Notes</label>
-          <input id="fNotes" placeholder="Optional notes" />
-        </div>
-      </div>
-      <div class="mActions">
-        <button class="btn ghost" id="cancelBtn">Cancel</button>
-        <button class="btn primary" id="saveBtn">Save</button>
+      <div class="btn-row">
+        <button class="btn btn-secondary" type="button">View Logs</button>
+        <button class="btn btn-primary" type="button">+ Add Inspection</button>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="toast" id="toast">Done</div>
-
-  <script>
-    // Safe selectors
-    const $ = (sel, root=document) => root.querySelector(sel);
-    const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
-
-    // Toast
-    const toast = $('#toast');
-    function showToast(msg){
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 1200);
-    }
-
-    // Demo data
-    const state = {
-      vehicles: [
-        { id:'v1', plate:'TN24XY6722', type:'Car', status:'Inspection', updated:'10 mins ago', assignee:'Meena (Inspector)', notes:'' },
-        { id:'v2', plate:'TN44AB5698', type:'Bike', status:'Repair', updated:'4 hours ago', assignee:'Arjun (Mechanic)', notes:'Brake pads' },
-        { id:'v3', plate:'TN11MN3401', type:'Car', status:'Ready', updated:'yesterday', assignee:'Arjun (Mechanic)', notes:'Wash pending' },
-        { id:'v4', plate:'TN73KL3098', type:'Bike', status:'Inspection', updated:'10 mins ago', assignee:'Arjun (Mechanic)', notes:'' },
-      ],
-      garageAlerts: [
-        { id:'ga1', icon:'₹', title:'CHALLAN', pill:'Great Driving', pillClass:'p-success', updated:'Updated on 1 Feb 2026' },
-        { id:'ga2', icon:'🚗', title:'INSURANCE', pill:'Active', pillClass:'p-info', updated:'Updated on 1 Feb 2026' },
-      ],
-      employeeAlerts: [
-        { id:'ea1', icon:'⏰', title:'Inspection Missed', pill:'Pending', pillClass:'p-warn', updated:'Updated 15 mins ago' },
-        { id:'ea2', icon:'🧰', title:'Repair', pill:'Done', pillClass:'p-success', updated:'Updated 4 hours ago' },
-        { id:'ea3', icon:'🗣️', title:'Complaint', pill:'New', pillClass:'p-danger', updated:'Yesterday' },
-      ],
-      garages: [
-        { id:'g1', name:'RapidFix Garage', city:'Mumbai', vehiclesToday:18, status:'Active' },
-        { id:'g2', name:'Khan Auto Repair', city:'Mumbai', vehiclesToday:9, status:'Active' },
-        { id:'g3', name:'Green Valley Motors', city:'Mumbai', vehiclesToday:7, status:'Active' },
-      ],
-      adminAlerts: [
-        { id:'aa1', icon:'🧾', title:'Billing Delay', pill:'High', pillClass:'p-warn', updated:'Today' },
-        { id:'aa2', icon:'⚠️', title:'Complaint Spike', pill:'Urgent', pillClass:'p-danger', updated:'Today' },
-        { id:'aa3', icon:'✅', title:'Compliance OK', pill:'Stable', pillClass:'p-success', updated:'Today' },
-      ],
-      modal: { mode:'new', editingId:null }
-    };
-
-    function pillClass(status){
-      if(status === 'Ready') return 'p-success';
-      if(status === 'Delivered') return 'p-info';
-      if(status === 'Repair' || status === 'Inspection') return 'p-warn';
-      return 'p-info';
-    }
-    function iconForType(type){
-      if(type === 'Bike') return '🏍️';
-      if(type === 'Car') return '🚗';
-      if(type === 'Scooter') return '🛵';
-      if(type === 'Auto') return '🛺';
-      return '🚘';
-    }
-
-    function makeVehicleItem(v){
-      const el = document.createElement('div');
-      el.className = 'item';
-      el.innerHTML = `
-        <div class="left">
-          <div class="iconBox">${iconForType(v.type)}</div>
-          <div class="meta">
-            <div class="t">${v.plate}</div>
-            <div class="u">Updated ${v.updated}</div>
+  <main class="container">
+    <!-- KPIs -->
+    <section class="card">
+      <div class="kpis">
+        <div class="kpi">
+          <div class="kpi-icon">🚗</div>
+          <div>
+            <div class="kpi-label">Vehicles in Garage</div>
+            <div class="kpi-value">12</div>
           </div>
         </div>
-        <div class="right">
-          <span class="pill ${pillClass(v.status)}">${v.status}</span>
-          <div class="chev" title="Open" data-open-vehicle="${v.id}">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+
+        <div class="kpi">
+          <div class="kpi-icon">🔧</div>
+          <div>
+            <div class="kpi-label">In Service</div>
+            <div class="kpi-value">7</div>
           </div>
         </div>
-      `;
-      return el;
-    }
 
-    function render(){
-      // Garage vehicle lists
-      const left = $('#garageVehiclesLeft');
-      const right = $('#garageVehiclesRight');
-      const all = $('#garageVehiclesAll');
-      left.innerHTML = '';
-      right.innerHTML = '';
-      all.innerHTML = '';
+        <div class="kpi">
+          <div class="kpi-icon">✅</div>
+          <div>
+            <div class="kpi-label">Ready for Delivery</div>
+            <div class="kpi-value">3</div>
+          </div>
+        </div>
+      </div>
+      <div class="note">
+        Tip: Orange is used for <b>actions</b>, gold for <b>highlights</b>, and dark neutrals for <b>elegance</b>.
+      </div>
+    </section>
 
-      state.vehicles.slice(0,2).forEach(v => left.appendChild(makeVehicleItem(v)));
-      state.vehicles.slice(2,4).forEach(v => right.appendChild(makeVehicleItem(v)));
-      state.vehicles.forEach(v => all.appendChild(makeVehicleItem(v)));
+    <section class="grid">
+      <!-- LEFT: Active Jobs -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Active Jobs</h2>
+            <p class="card-sub">Track ongoing repairs and inspection progress</p>
+          </div>
+          <button class="btn btn-primary" type="button">Assign Job</button>
+        </div>
 
-      // KPIs
-      $('#kpiTotal').textContent = String(state.vehicles.length);
-      $('#kpiProg').textContent = String(state.vehicles.filter(v => ['Inspection','Repair'].includes(v.status)).length);
-      $('#kpiReady').textContent = String(state.vehicles.filter(v => v.status === 'Ready').length);
-
-      // Garage alerts
-      const gAlerts = $('#garageAlerts');
-      gAlerts.innerHTML = '';
-      state.garageAlerts.forEach(a => {
-        const el = document.createElement('div');
-        el.className = 'item';
-        el.innerHTML = `
-          <div class="left">
-            <div class="iconBox">${a.icon}</div>
+        <div class="list">
+          <div class="item">
+            <div class="thumb">A</div>
             <div class="meta">
-              <div class="t" style="letter-spacing:3px;color:#6B7280;font-size:11px">${a.title}</div>
-              <div class="u"><span class="pill ${a.pillClass}">${a.pill}</span></div>
+              <div class="name">TN 38 AB 1234 • Honda Activa</div>
+              <div class="sub">Assigned to: Kavin • Last update: 10:40 AM</div>
+            </div>
+            <div class="right">
+              <span class="pill progress">In Progress</span>
+              <div class="bar" style="--w: 62%"><span></span></div>
             </div>
           </div>
-          <div class="right">
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
-              <div style="font-size:12px;color:#9CA3AF;font-weight:900">${a.updated}</div>
-              <div class="pill p-info" style="padding:6px 10px">↻ Refresh</div>
-            </div>
-          </div>
-        `;
-        gAlerts.appendChild(el);
-      });
 
-      // Employee tasks
-      const tList = $('#employeeTaskList');
-      tList.innerHTML = '';
-      state.vehicles.slice(0,3).forEach(v => {
-        const el = document.createElement('div');
-        el.className = 'item';
-        el.innerHTML = `
-          <div class="left">
-            <div class="iconBox">🚘</div>
+          <div class="item">
+            <div class="thumb">B</div>
             <div class="meta">
-              <div class="t">${v.plate}</div>
-              <div class="u">${v.status} • Updated ${v.updated}</div>
+              <div class="name">TN 37 XY 9087 • Swift</div>
+              <div class="sub">Assigned to: Surya • Last update: 09:15 AM</div>
+            </div>
+            <div class="right">
+              <span class="pill pending">Pending</span>
+              <div class="bar" style="--w: 35%"><span></span></div>
             </div>
           </div>
-          <div class="right">
-            <span class="pill ${pillClass(v.status)}">${v.status === 'Inspection' ? 'Pending' : v.status}</span>
-            <div class="chev" data-open-vehicle="${v.id}" title="Open">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-            </div>
-          </div>
-        `;
-        tList.appendChild(el);
-      });
 
-      // Employee alerts
-      const eAlerts = $('#employeeAlerts');
-      eAlerts.innerHTML = '';
-      state.employeeAlerts.forEach(a => {
-        const el = document.createElement('div');
-        el.className = 'item';
-        el.innerHTML = `
-          <div class="left">
-            <div class="iconBox">${a.icon}</div>
+          <div class="item">
+            <div class="thumb">C</div>
             <div class="meta">
-              <div class="t">${a.title}</div>
-              <div class="u">${a.updated}</div>
+              <div class="name">TN 41 PR 3344 • Creta</div>
+              <div class="sub">Assigned to: Vignesh • Last update: 08:30 AM</div>
+            </div>
+            <div class="right">
+              <span class="pill delayed">Delayed</span>
+              <div class="bar" style="--w: 18%"><span></span></div>
             </div>
           </div>
-          <div class="right">
-            <span class="pill ${a.pillClass}">${a.pill}</span>
+        </div>
+      </section>
+
+      <!-- RIGHT: Create / Update Form -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Quick Update</h2>
+            <p class="card-sub">Use the same brand palette on forms</p>
           </div>
-        `;
-        eAlerts.appendChild(el);
-      });
+          <button class="btn btn-secondary" type="button">Reset</button>
+        </div>
 
-      // Admin garages
-      const adminList = $('#adminGarageList');
-      const adminMini = $('#adminGarageListMini');
-      adminList.innerHTML = '';
-      adminMini.innerHTML = '';
-      state.garages.forEach(g => {
-        const cls = g.status === 'Active' ? 'p-success' : 'p-warn';
-        const el = document.createElement('div');
-        el.className = 'item';
-        el.innerHTML = `
-          <div class="left">
-            <div class="iconBox">🏁</div>
-            <div class="meta">
-              <div class="t">${g.name}</div>
-              <div class="u">${g.city}</div>
-            </div>
+        <form class="form" onsubmit="event.preventDefault(); alert('Preview only ✅');">
+          <div>
+            <label for="vehicle">Vehicle</label>
+            <select id="vehicle" required>
+              <option value="">Select</option>
+              <option>Honda Activa</option>
+              <option>Swift</option>
+              <option>Creta</option>
+            </select>
           </div>
-          <div class="right">
-            <span class="pill ${cls}">${g.status}</span>
+
+          <div>
+            <label for="status">Status</label>
+            <select id="status" required>
+              <option value="">Select</option>
+              <option>Pending</option>
+              <option>In Progress</option>
+              <option>Completed</option>
+              <option>Delayed</option>
+            </select>
           </div>
-        `;
-        adminList.appendChild(el);
 
-        const el2 = document.createElement('div');
-        el2.className = 'item';
-        el2.innerHTML = `
-          <div class="left">
-            <div class="iconBox">🏁</div>
-            <div class="meta">
-              <div class="t">${g.name}</div>
-              <div class="u">${g.vehiclesToday} vehicles today</div>
-            </div>
+          <div>
+            <label for="notes">Notes</label>
+            <textarea id="notes" placeholder="Add inspection notes..."></textarea>
           </div>
-          <div class="right"><span class="pill ${cls}">${g.status}</span></div>
-        `;
-        adminMini.appendChild(el2);
-      });
 
-      // Admin alerts
-      const aAlerts = $('#adminAlerts');
-      aAlerts.innerHTML = '';
-      state.adminAlerts.forEach(a => {
-        const el = document.createElement('div');
-        el.className = 'item';
-        el.innerHTML = `
-          <div class="left">
-            <div class="iconBox">${a.icon}</div>
-            <div class="meta">
-              <div class="t">${a.title}</div>
-              <div class="u">${a.updated}</div>
-            </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="submit">Save Update</button>
+            <button class="btn btn-danger" type="button">Mark Issue</button>
           </div>
-          <div class="right">
-            <span class="pill ${a.pillClass}">${a.pill}</span>
+        </form>
+
+        <div class="card-header" style="padding-top:0">
+          <div>
+            <h2 class="card-title">Palette Swatches</h2>
+            <p class="card-sub">Your Coolors palette applied as tokens</p>
           </div>
-        `;
-        aAlerts.appendChild(el);
-      });
-    }
+        </div>
 
-    // Scoped tab activation (fixes platform “application error” from wrong selectors)
-    function activateTab(rootEl, tabId){
-      $$('.tab', rootEl).forEach(t => t.classList.remove('show'));
-      const target = rootEl.querySelector('#' + tabId);
-      if(!target){ showToast('Tab not found'); return; }
-      target.classList.add('show');
-      $$('.seg button[data-tab]', rootEl).forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
-    }
-
-    // Modal
-    const overlay = $('#overlay');
-    const modalTitle = $('#modalTitle');
-    const fPlate = $('#fPlate');
-    const fType = $('#fType');
-    const fStatus = $('#fStatus');
-    const fAssignee = $('#fAssignee');
-    const fNotes = $('#fNotes');
-
-    function openNewVehicle(){
-      state.modal.mode = 'new';
-      state.modal.editingId = null;
-      modalTitle.textContent = '+ New Vehicle';
-      fPlate.value = '';
-      fType.value = 'Bike';
-      fStatus.value = 'Inspection';
-      fAssignee.value = 'Unassigned';
-      fNotes.value = '';
-      overlay.classList.add('show');
-      setTimeout(() => fPlate.focus(), 50);
-    }
-
-    function openVehicle(id){
-      const v = state.vehicles.find(x => x.id === id);
-      if(!v){ showToast('Not found'); return; }
-      state.modal.mode = 'edit';
-      state.modal.editingId = id;
-      modalTitle.textContent = 'Update Vehicle';
-      fPlate.value = v.plate;
-      fType.value = v.type;
-      fStatus.value = v.status;
-      fAssignee.value = v.assignee;
-      fNotes.value = v.notes || '';
-      overlay.classList.add('show');
-    }
-
-    function closeModal(){ overlay.classList.remove('show'); }
-    $('#closeModal').addEventListener('click', closeModal);
-    $('#cancelBtn').addEventListener('click', closeModal);
-    overlay.addEventListener('click', (e) => { if(e.target === overlay) closeModal(); });
-    window.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
-
-    $('#saveBtn').addEventListener('click', () => {
-      const plate = fPlate.value.trim().toUpperCase();
-      if(!plate){ showToast('Enter vehicle number'); return; }
-
-      const type = fType.value;
-      const status = fStatus.value;
-      const assignee = fAssignee.value;
-      const notes = fNotes.value.trim();
-
-      if(state.modal.mode === 'new'){
-        const id = 'v' + Math.random().toString(16).slice(2,7);
-        state.vehicles.unshift({ id, plate, type, status, updated:'just now', assignee, notes });
-        showToast('Vehicle added');
-      } else {
-        const v = state.vehicles.find(x => x.id === state.modal.editingId);
-        if(v){
-          v.plate = plate; v.type = type; v.status = status; v.assignee = assignee; v.notes = notes; v.updated = 'just now';
-          showToast('Updated');
-        }
-      }
-
-      closeModal();
-      render();
-    });
-
-    // Click handling (safe)
-    document.addEventListener('click', (e) => {
-      const t = e.target;
-
-      // Garage tabs
-      const gBtn = t.closest('[aria-label="Garage tabs"] button[data-tab]');
-      if(gBtn){
-        e.preventDefault();
-        activateTab($('#garageRoot'), gBtn.dataset.tab);
-        return;
-      }
-
-      // Admin tabs
-      const aBtn = t.closest('[aria-label="Admin tabs"] button[data-tab]');
-      if(aBtn){
-        e.preventDefault();
-        activateTab($('#adminRoot'), aBtn.dataset.tab);
-        return;
-      }
-
-      // Dock
-      const dBtn = t.closest('.dock .dBtn');
-      if(dBtn){
-        e.preventDefault();
-        $$('.dock .dBtn').forEach(b => b.classList.toggle('active', b === dBtn));
-        if(dBtn.dataset.dock === 'vehicles') activateTab($('#garageRoot'), 'g_vehicles');
-        if(dBtn.dataset.dock === 'alerts') activateTab($('#garageRoot'), 'g_alerts');
-        if(dBtn.dataset.dock === 'home') activateTab($('#garageRoot'), 'g_overview');
-        return;
-      }
-
-      // Quick action / FAB
-      const act = t.closest('[data-action]');
-      if(act){
-        e.preventDefault();
-        const a = act.dataset.action;
-        if(a === 'newVehicle') openNewVehicle();
-        else showToast(a + ' (demo)');
-        return;
-      }
-
-      // Open vehicle
-      const openV = t.closest('[data-open-vehicle]');
-      if(openV){
-        e.preventDefault();
-        openVehicle(openV.dataset.openVehicle);
-        return;
-      }
-
-      // Sidebar
-      const sb = t.closest('.sbBtn');
-      if(sb){
-        e.preventDefault();
-        $$('.sbBtn').forEach(b => b.classList.toggle('active', b === sb));
-        showToast(sb.dataset.nav + ' (demo)');
-        return;
-      }
-
-      // Header buttons
-      if(t.closest('#hdrCopy')) showToast('Copied (demo)');
-      if(t.closest('#hdrBell')) showToast('Notifications (demo)');
-
-      // Reports
-      if(t.closest('[data-open="report"]')) showToast('Open report (demo)');
-    });
-
-    // Init
-    render();
-  </script>
+        <div class="palette" aria-label="Palette swatches">
+          <div class="swatch" style="background: var(--amber-0)"></div>
+          <div class="swatch" style="background: var(--amber-1)"></div>
+          <div class="swatch" style="background: var(--amber-2)"></div>
+          <div class="swatch" style="background: var(--amber-3)"></div>
+          <div class="swatch" style="background: var(--amber-4)"></div>
+          <div class="swatch" style="background: var(--amber-5)"></div>
+          <div class="swatch" style="background: var(--amber-6)"></div>
+          <div class="swatch" style="background: var(--amber-7)"></div>
+          <div class="swatch" style="background: var(--amber-8)"></div>
+          <div class="swatch" style="background: var(--amber-9)"></div>
+        </div>
+      </section>
+    </section>
+  </main>
 </body>
 </html>
